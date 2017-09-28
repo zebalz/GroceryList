@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="GroceryList.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-app="GroceryList">
+        <div ng-controller="groceryController as glcs">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="text-center">A FUCKING GROCERY LIST</h1>
+                        <div class="input-group">
+                            <input type="text" class="form-control" autofocus ng-model="glcs.data.Items" placeholder="Fucking Item" aria-label="Search for...">
+                            <input type="number" placeholder=" Fucking Quantity" ng-model="glcs.data.Quantity">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary btn-success" type="button" ng-click="glcs.post()">Add Item!</button>
+                            </span>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item(s)</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                <tr class="num" ng-repeat="item in glcs.itemList" ng-controller="rowController as r">
+                                    <td></td>
+                                    <td><span ng-click="r.edit=true" ng-if="!r.edit">{{item.Items}}</span>
+                                        <input type="text" class="form-control" autofocus ng-model="item.Items" ng-if="r.edit" ng-blur="r.edit=false;r.updateI(item)"/>
+                                    </td>
+                                    <td><span ng-click="r.editAlso=true" ng-if="!r.editAlso">{{item.Quantity}}</span>
+                                        <input type="text" class="form-control" autofocus ng-model="item.Quantity" ng-if="r.editAlso" ng-blur="r.editAlso=false; r.updateI(item)" />
+                                    </td>
+                                    <td><button type="button" class=" btn btn-warning delete" ng-click="glcs.deleteItem(item.Id, $index)">Delete</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-block btn-danger" ng-click="glcs.clearAll()">Clear This Fucking List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src="GroceryList.js"></script>
+</body>
+</html>

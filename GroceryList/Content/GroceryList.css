@@ -1,0 +1,22 @@
+﻿h1 {
+    font-size: 5.6em;
+}
+
+table {
+    counter-reset: rowNumber;
+    table-layout:fixed;
+}
+
+table .num {
+    counter-increment: rowNumber;
+}
+
+table .num td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+.delete{
+    float:right;
+}
