@@ -87,7 +87,7 @@
             glService.get().then(_getGroceryItemsSuccess, _getGroceryItemsFail);
             console.log(response);
         }
-        function _postNewItemFail(error) {
+        function _postNewItemFail(error) { 
             alert(error);
         }
         function _deleteOneItem(id, index) {
